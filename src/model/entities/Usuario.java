@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.exceptions.DomainException;
+
 public class Usuario {
 
     private static int gerar_matricula = 1;
@@ -13,6 +15,17 @@ public class Usuario {
     }
 
     public Usuario(String nome, String numeroTelefone, String email) {
+
+        if(nome == null) {
+            throw new DomainException("Nome inválido!");
+        }
+        if(numeroTelefone.length() != 11) {
+            throw new DomainException("Número inválido!");
+        }
+        if(!email.contains("@") || !email.contains(".")) {
+            throw new DomainException("Email inválido!");
+        }
+
         this.matricula = gerar_matricula++;
         this.nome = nome;
         this.numeroTelefone = numeroTelefone;

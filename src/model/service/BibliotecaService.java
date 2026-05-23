@@ -15,18 +15,27 @@ public class BibliotecaService {
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
     public void cadastrarLivro(String nome, String autor, String codigo) {
+
+        for(Livro l : livros) {
+            if(l.getIsbn().equals(codigo)) {
+                throw new DomainException("Livro já cadastrado!");
+            };
+        }
+
         livros.add(new Livro(nome, autor, codigo));
     }
 
     public void cadastrarUsuario(String nome, String telefone, String email) {
+
         usuarios.add(new Usuario(nome, telefone, email));
     }
+
 
     public Livro encontrarLivro(String nome) {
 
         return livros.stream().filter(l -> l.getNome().equalsIgnoreCase(nome)).
                 findFirst().
-                orElseThrow(() -> new RuntimeException("Livro não encontrado!"));
+                orElseThrow(() -> new DomainException("Livro não encontrado!"));
 
     }
 
@@ -49,8 +58,12 @@ public class BibliotecaService {
         Usuario usarioEncontrado = null;
         Livro livroEncontrado = null;
 
+        if(!livroEncontrado.isDisponivel()) {
+            throw new DomainException("Livro já emprestado!");
+        }
+
         for(Usuario u : usuarios) {
-            if(u.getMatricula() == matricula) {
+            if(u.getMatricula().equals(matricula)) {
                 usarioEncontrado = u;
             }
         }
@@ -90,6 +103,7 @@ public class BibliotecaService {
         }
 
         empEncontrado.devolverLivro();
+        emprestimos.remove(empEncontrado);
     }
 
     public void livrosDisponiveis() {

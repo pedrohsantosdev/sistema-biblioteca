@@ -1,5 +1,7 @@
 package model.entities;
 
+import model.exceptions.DomainException;
+
 public class Livro {
 
     private String nome;
@@ -11,6 +13,17 @@ public class Livro {
     }
 
     public Livro(String nome, String autor, String isbn) {
+
+        if(nome == null) {
+            throw new DomainException("Nome inválido!");
+        }
+        if(autor == null) {
+            throw new DomainException("Nome inválido!");
+        }
+        if(isbn == null ) {
+            throw new DomainException("Código inválido!");
+        }
+
         this.nome = nome;
         this.autor = autor;
         this.isbn = isbn;

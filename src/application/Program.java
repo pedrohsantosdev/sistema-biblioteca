@@ -1,5 +1,6 @@
 package application;
 
+import model.exceptions.DomainException;
 import model.service.BibliotecaService;
 
 import java.util.Locale;
@@ -17,117 +18,121 @@ public class Program {
         int opcao;
 
         do {
-            System.out.println("------ MENU -------");
-            System.out.println();
-            System.out.println("1 - CADASTRAR LIVRO");
-            System.out.println("2 - CADASTRAR USUÁRIO");
-            System.out.println("3 - LISTAR LIVROS");
-            System.out.println("4 - LISTAR USUÁRIOS");
-            System.out.println("5 - EMPRESTAR LIVRO");
-            System.out.println("6 - DEVOLVER LIVRO");
-            System.out.println("7 - VER LIVROS DISPÓNIVEIS");
-            System.out.println("8 - VER EMPRÉSTIMOS ATIVOS");
-            System.out.println("0 - SAIR DO PROGRAMA");
-            System.out.println();
+            try {
+                System.out.println("------ MENU -------");
+                System.out.println();
+                System.out.println("1 - CADASTRAR LIVRO");
+                System.out.println("2 - CADASTRAR USUÁRIO");
+                System.out.println("3 - LISTAR LIVROS");
+                System.out.println("4 - LISTAR USUÁRIOS");
+                System.out.println("5 - EMPRESTAR LIVRO");
+                System.out.println("6 - DEVOLVER LIVRO");
+                System.out.println("7 - VER LIVROS DISPÓNIVEIS");
+                System.out.println("8 - VER EMPRÉSTIMOS ATIVOS");
+                System.out.println("0 - SAIR DO PROGRAMA");
+                System.out.println();
 
-            System.out.print("Escolha uma opção: ");
-            opcao = sc.nextInt();
-            sc.nextLine();
+                System.out.print("Escolha uma opção: ");
+                opcao = sc.nextInt();
+                sc.nextLine();
 
-            switch (opcao) {
-                case 1:
+                switch (opcao) {
+                    case 1:
 
-                    System.out.print("Digite o nome do livro que deseja cadastrar: ");
-                    String nomeLivro = sc.nextLine();
-                    System.out.print("Entre com o nome do autor: ");
-                    String autor = sc.nextLine();
-                    System.out.print("Digite o código do produto: ");
-                    String codigo = sc.nextLine();
+                        System.out.print("Digite o nome do livro que deseja cadastrar: ");
+                        String nomeLivro = sc.nextLine();
+                        System.out.print("Entre com o nome do autor: ");
+                        String autor = sc.nextLine();
+                        System.out.print("Digite o código do produto: ");
+                        String codigo = sc.nextLine();
 
-                    service.cadastrarLivro(nomeLivro, autor, codigo);
+                        service.cadastrarLivro(nomeLivro, autor, codigo);
 
-                    System.out.println("Livro cadastrado com sucesso!");
+                        System.out.println("Livro cadastrado com sucesso!");
 
-                    break;
+                        break;
 
-                case 2:
+                    case 2:
 
-                    System.out.print("Digite o nome do usuário: ");
-                    String nomeUsuario = sc.nextLine();
-                    System.out.print("Digite o número de telefone: ");
-                    String telefone = sc.nextLine();
-                    System.out.print("Entre com o email: ");
-                    String email = sc.nextLine();
+                        System.out.print("Digite o nome do usuário: ");
+                        String nomeUsuario = sc.nextLine();
+                        System.out.print("Digite o número de telefone: ");
+                        String telefone = sc.nextLine();
+                        System.out.print("Entre com o email: ");
+                        String email = sc.nextLine();
 
-                    service.cadastrarUsuario(nomeUsuario, telefone, email);
+                        service.cadastrarUsuario(nomeUsuario, telefone, email);
 
-                    System.out.println("Usuário cadastrado com sucesso!");
+                        System.out.println("Usuário cadastrado com sucesso!");
 
-                    break;
+                        break;
 
-                case 3:
+                    case 3:
 
-                    System.out.println("Listando livros: ");
-                    service.listarLivros();
+                        System.out.println("Listando livros: ");
+                        service.listarLivros();
 
-                    break;
+                        break;
 
-                case 4:
+                    case 4:
 
-                    System.out.println("Listando usuários cadastrados no sistema: ");
-                    service.listarUsuarios();
+                        System.out.println("Listando usuários cadastrados no sistema: ");
+                        service.listarUsuarios();
 
-                    break;
+                        break;
 
-                case 5:
+                    case 5:
 
-                    System.out.print("Digite a matrícula do usuário: ");
-                    int matricula = sc.nextInt();
-                    sc.nextLine();
-                    System.out.print("Digite o código do livro: ");
-                    String codigoLivro = sc.nextLine();
+                        System.out.print("Digite a matrícula do usuário: ");
+                        int matricula = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Digite o código do livro: ");
+                        String codigoLivro = sc.nextLine();
 
-                   service.emprestarLivro(matricula, codigoLivro);
+                        service.emprestarLivro(matricula, codigoLivro);
 
-                    System.out.println("Empréstimo concluído!");
+                        System.out.println("Empréstimo concluído!");
 
-                   break;
+                        break;
 
-                case 6:
+                    case 6:
 
-                    System.out.print("Digite o ibns do livro que deseja devolver: ");
-                    String codigoDevolucao = sc.nextLine();
+                        System.out.print("Digite o ibns do livro que deseja devolver: ");
+                        String codigoDevolucao = sc.nextLine();
 
-                    service.devolverLivro(codigoDevolucao);
+                        service.devolverLivro(codigoDevolucao);
 
-                    System.out.println("Livro devolvido com sucesso!");
+                        System.out.println("Livro devolvido com sucesso!");
 
-                    break;
+                        break;
 
-                case 7:
+                    case 7:
 
-                    System.out.println("Listando livros dispóniveis");
+                        System.out.println("Listando livros dispóniveis");
 
-                    service.livrosDisponiveis();
+                        service.livrosDisponiveis();
 
-                    break;
+                        break;
 
-                case 8:
+                    case 8:
 
-                    System.out.println("Mostrando empréstimos ativos: ");
+                        System.out.println("Mostrando empréstimos ativos: ");
 
-                    service.emprestimosAtivos();
+                        service.emprestimosAtivos();
 
-                    break;
+                        break;
 
-                case 0:
+                    case 0:
 
-                    System.out.println("Saindo do programa!");
+                        System.out.println("Saindo do programa!");
 
-                    break;
+                        break;
+                }
+            } catch (DomainException e) {
+                throw new DomainException("Erro: " + e.getMessage());
             }
-
         } while (opcao != 0);
+
 
         sc.close();
     }
