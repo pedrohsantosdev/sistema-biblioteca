@@ -78,7 +78,7 @@ public class Emprestimo {
     public String toString() {
         return
                 "Livro: " + livro + " - " +
-                "Usuário: " + usuario + " - " +
+                "Usuário: " + usuario.getNome() + " - " +
                 "Data de empréstimo: " + dataEmprestimo.format(dtf) + " - " +
                 "Data de devolução: " + dataDevolucao.format(dtf);
     }

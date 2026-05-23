@@ -101,6 +101,30 @@ public class Program {
                     service.devolverLivro(codigoDevolucao);
 
                     System.out.println("Livro devolvido com sucesso!");
+
+                    break;
+
+                case 7:
+
+                    System.out.println("Listando livros dispóniveis");
+
+                    service.livrosDisponiveis();
+
+                    break;
+
+                case 8:
+
+                    System.out.println("Mostrando empréstimos ativos: ");
+
+                    service.emprestimosAtivos();
+
+                    break;
+
+                case 0:
+
+                    System.out.println("Saindo do programa!");
+
+                    break;
             }
 
         } while (opcao != 0);

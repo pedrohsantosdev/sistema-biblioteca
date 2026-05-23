@@ -80,7 +80,7 @@ public class BibliotecaService {
 
         for(Emprestimo emp : emprestimos) {
 
-            if(emp.getLivro().getIsbn().equals(ibns)) {
+            if(emp.getLivro().getIsbn().equals(ibns) && !emp.getLivro().isDisponivel()) {
                 empEncontrado = emp;
             }
         }
@@ -92,6 +92,21 @@ public class BibliotecaService {
         empEncontrado.devolverLivro();
     }
 
+    public void livrosDisponiveis() {
 
+        for(Livro l : livros) {
+
+            if(l.isDisponivel()) {
+                System.out.println(l);
+            }
+        }
+    }
+
+    public void emprestimosAtivos() {
+
+        for(Emprestimo emp : emprestimos) {
+            System.out.println(emp);
+        }
+    }
 
 }
